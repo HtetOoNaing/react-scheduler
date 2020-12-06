@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda } from '@syncfusion/ej2-react-schedule';
+import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, ViewsDirective, ViewDirective, TimelineViews, TimelineMonth } from '@syncfusion/ej2-react-schedule';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 
 const App = () => {
@@ -23,15 +23,22 @@ const App = () => {
       IsBlock: true
   }]);
 
-  // const remoteData = new DataManager({
-  //   url: 'https://js.syncfusion.com/demos/ejservices/api/Schedule/loadData',
-  //   adaptor: new WebApiAdaptor(),
-  //   crossDomain: true
-  // });
+  const remoteData = new DataManager({
+    url: 'https://js.syncfusion.com/demos/ejservices/api/Schedule/loadData',
+    adaptor: new WebApiAdaptor(),
+    crossDomain: true
+  });
 
   return (
-      <ScheduleComponent selectedDate={new Date(2020, 12, 5)} eventSettings={{ dataSource: localData }}>
-        <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+      <ScheduleComponent height="550px" selectedDate={new Date(2017, 5, 5)} eventSettings={{ dataSource: remoteData }}>
+        <ViewsDirective>
+          <ViewDirective option='Day' startHour="09:00" endHour="18:00" interval={3} displayName="3 Days"></ViewDirective>
+          <ViewDirective option='Week' startHour="09:00" endHour="18:00"></ViewDirective>
+          <ViewDirective option='Month' isSelected={true} showWeekNumber={true} showWeekend={false}></ViewDirective>
+          <ViewDirective option='TimelineDay'></ViewDirective>
+          <ViewDirective option='TimelineMonth'></ViewDirective>
+        </ViewsDirective>
+        <Inject services={[Day, Week, WorkWeek, Month, Agenda, TimelineViews, TimelineMonth]} />
       </ScheduleComponent>
     );
   }
