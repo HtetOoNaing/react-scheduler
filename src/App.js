@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, ViewsDirective, ViewDirective, TimelineViews, TimelineMonth } from '@syncfusion/ej2-react-schedule';
+import { Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda, ViewsDirective, ViewDirective, TimelineViews, TimelineMonth, DragAndDrop, Resize, DragEventArgs, ResizeEventArgs, ScrollOptions } from '@syncfusion/ej2-react-schedule';
 import { DataManager, WebApiAdaptor } from '@syncfusion/ej2-data';
 
 const App = () => {
@@ -38,7 +38,7 @@ const App = () => {
           <ViewDirective option='TimelineDay'></ViewDirective>
           <ViewDirective option='TimelineMonth'></ViewDirective>
         </ViewsDirective>
-        <Inject services={[Day, Week, WorkWeek, Month, Agenda, TimelineViews, TimelineMonth]} />
+        <Inject services={[Day, Week, WorkWeek, Month, Agenda, TimelineViews, TimelineMonth, DragAndDrop, Resize]} />
       </ScheduleComponent>
     );
   }
